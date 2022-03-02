@@ -12,8 +12,8 @@ dotenv.config();
 
 const {
   PORT: port = 3000,
-  SESSION_SECRET: sessionSecret,
-  DATABASE_URL: connectionString,
+  SESSION_SECRET: sessionSecret = 'asdf',
+  DATABASE_URL: connectionString = 'postgres://:@localhost/postgres',
 } = process.env;
 
 if (!connectionString || !sessionSecret) {
