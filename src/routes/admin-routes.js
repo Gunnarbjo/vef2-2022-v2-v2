@@ -22,7 +22,7 @@ async function index(req, res) {
   const events = await listEvents();
   const { user: { username } = {} } = req || {};
 
-  return res.render('admin', {
+  return res.json('admin', {
     username,
     events,
     errors: [],
@@ -46,7 +46,7 @@ function login(req, res) {
     req.session.messages = [];
   }
 
-  return res.render('login', { message, title: 'Innskráning' });
+  return res.json('login', { message, title: 'Innskráning' });
 }
 
 async function validationCheck(req, res, next) {
@@ -74,7 +74,7 @@ async function validationCheck(req, res, next) {
   }
 
   if (!validation.isEmpty() || customValidations.length > 0) {
-    return res.render('admin', {
+    return res.json('admin', {
       events,
       username,
       title: 'Viðburðir — umsjón',
@@ -113,7 +113,7 @@ async function validationCheckUpdate(req, res, next) {
   }
 
   if (!validation.isEmpty() || customValidations.length > 0) {
-    return res.render('admin-event', {
+    return res.json('admin-event', {
       username,
       event,
       title: 'Viðburðir — umsjón',
@@ -136,7 +136,7 @@ async function registerRoute(req, res) {
     return res.redirect('/admin');
   }
 
-  return res.render('error');
+  return res.json('error');
 }
 
 async function updateRoute(req, res) {
@@ -157,7 +157,7 @@ async function updateRoute(req, res) {
     return res.redirect('/admin');
   }
 
-  return res.render('error');
+  return res.json('error');
 }
 
 async function eventRoute(req, res, next) {
@@ -170,7 +170,7 @@ async function eventRoute(req, res, next) {
     return next();
   }
 
-  return res.render('admin-event', {
+  return res.json('admin-event', {
     username,
     title: `${event.name} — Viðburðir — umsjón`,
     event,

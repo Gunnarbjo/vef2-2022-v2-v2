@@ -13,7 +13,7 @@ export const indexRouter = express.Router();
 async function indexRoute(req, res) {
   const events = await listEvents();
 
-  res.render('index', {
+  res.json('index', {
     title: 'Viðburðasíðan',
     admin: false,
     events,
@@ -30,7 +30,7 @@ async function eventRoute(req, res, next) {
 
   const registered = await listRegistered(event.id);
 
-  return res.render('event', {
+  return res.json('event', {
     title: `${event.name} — Viðburðasíðan`,
     event,
     registered,
@@ -42,7 +42,7 @@ async function eventRoute(req, res, next) {
 async function eventRegisteredRoute(req, res) {
   const events = await listEvents();
 
-  res.render('registered', {
+  res.json('registered', {
     title: 'Viðburðasíðan',
     events,
   });
@@ -64,7 +64,7 @@ async function validationCheck(req, res, next) {
   const validation = validationResult(req);
 
   if (!validation.isEmpty()) {
-    return res.render('event', {
+    return res.json('event', {
       title: `${event.name} — Viðburðasíðan`,
       data,
       event,
@@ -91,7 +91,7 @@ async function registerRoute(req, res) {
     return res.redirect(`/${event.slug}`);
   }
 
-  return res.render('error');
+  return res.json('error');
 }
 
 indexRouter.get('/', catchErrors(indexRoute));
