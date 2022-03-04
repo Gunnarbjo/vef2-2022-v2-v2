@@ -13,11 +13,13 @@ export const indexRouter = express.Router();
 async function indexRoute(req, res) {
   const events = await listEvents();
 
-  res.json('index', {
-    title: 'Viðburðasíðan',
-    admin: false,
-    events,
-  });
+  res.json(
+    /*'index',*/ {
+      title: 'Viðburðasíðan',
+      admin: false,
+      events,
+    }
+  );
 }
 
 async function eventRoute(req, res, next) {

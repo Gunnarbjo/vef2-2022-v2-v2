@@ -15,6 +15,7 @@ const {
   SESSION_SECRET: sessionSecret = 'asdf',
   DATABASE_URL: connectionString = 'postgres://:@localhost/postgres',
 } = process.env;
+console.log(process.env);
 
 if (!connectionString || !sessionSecret) {
   console.error('Vantar gögn í env');
